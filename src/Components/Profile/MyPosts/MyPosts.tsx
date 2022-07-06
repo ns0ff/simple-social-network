@@ -8,7 +8,7 @@ export type PostType = {
     likes: number
 }
 
-type MyPostsType = {
+export type MyPostsType = {
     postData: Array<PostType>
 }
 

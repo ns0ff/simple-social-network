@@ -3,15 +3,19 @@ import style from './Dialogs.module.css'
 import {DialogItem, DialogItemType} from "./DialogItem/DialogItem";
 import {Message, MessageType} from "./Message/Message";
 
-type DialogsType = {
+export type DialogsType = {
     dialogsData: Array<DialogItemType>
     messageData: Array<MessageType>
 }
 
-export const Dialogs = (props: DialogsType) => {
+type DialogsPageType = {
+    messagesPage: DialogsType
+}
 
-    const dialogsElements = props.dialogsData.map(el => <DialogItem id={el.id} name={el.name} />)
-    const messageElements = props.messageData.map(el => <Message id={el.id} message={el.message} />)
+export const Dialogs = (props: DialogsPageType) => {
+
+    const dialogsElements = props.messagesPage.dialogsData.map(el => <DialogItem id={el.id} name={el.name} />)
+    const messageElements = props.messagesPage.messageData.map(el => <Message id={el.id} message={el.message} />)
 
 
     return (

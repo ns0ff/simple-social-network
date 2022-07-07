@@ -1,4 +1,4 @@
-import React from 'react'
+import React, {useRef} from 'react'
 import styles from './MyPosts.module.css'
 import {Post} from "./Post/Post";
 
@@ -12,14 +12,22 @@ export type MyPostsType = {
     postData: Array<PostType>
 }
 
-export const MyPosts = (props: MyPostsType) => {
+type PostsPropsType = {
+    postData: Array<PostType>
+    addPost: (message: string) => void
+}
+
+export const MyPosts = (props: PostsPropsType) => {
 
     const postsElements = props.postData.map(el => <Post id={el.id} message={el.message} likes={el.likes} />)
 
-    let newPostElement = React.createRef<HTMLTextAreaElement>()
+    // let newPostElement = React.createRef<HTMLTextAreaElement>()
+    let newPostElement = useRef<HTMLTextAreaElement>(null);
+
     const addPost = () => {
         let text = newPostElement.current?.value
-        alert(text)
+        if (text) props.addPost(text)
+        if (newPostElement.current) newPostElement.current.value = ''
     }
 
     return (

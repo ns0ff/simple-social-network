@@ -1,3 +1,6 @@
+import {PostType} from "../Components/Profile/MyPosts/MyPosts";
+import {reRenderEntireTree} from "../rerender";
+
 export let state = {
     messagesPage: {
         dialogsData: [
@@ -23,4 +26,16 @@ export let state = {
             {id: 2, message: 'Aliquid aliquam officia praesentium exercitationem omnis sapiente. A qui laudantium numquam quis doloremque. Voluptas non qui et.', likes: 5},
         ]
     }
+}
+
+
+export const addPost = (postMessage: string) => {
+    let newPost: PostType = {
+        id: 55,
+        message: postMessage,
+        likes: 0
+
+    }
+    state.profilePage.postData.push(newPost)
+    reRenderEntireTree(state)
 }

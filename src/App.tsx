@@ -10,13 +10,14 @@ import {Music} from "./Components/Music/Music";
 import {Settings} from "./Components/Settings/Settings";
 import {MyPostsType} from "./Components/Profile/MyPosts/MyPosts";
 
-type StateType = {
+export type StateType = {
     messagesPage: DialogsType
     profilePage: MyPostsType
 }
 
 type AppType = {
     state: StateType
+    addPost: (message: string) => void
 }
 
 function App(props: AppType) {
@@ -26,7 +27,7 @@ function App(props: AppType) {
             <Navbar />
             <div className="app-wrapper-content">
                 <Routes>
-                    <Route path={'/profile'} element={<Profile profilePage={props.state.profilePage}/>}/>
+                    <Route path={'/profile'} element={<Profile profilePage={props.state.profilePage} addPost={props.addPost}/>}/>
                     <Route path={'/messages/*'} element={<Dialogs messagesPage={props.state.messagesPage}/>}/>
                     <Route path={'/news'} element={<News/>}/>
                     <Route path={'/music'} element={<Music/>}/>
